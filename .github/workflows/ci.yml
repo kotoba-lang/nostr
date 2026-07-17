@@ -1,0 +1,39 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  nbb-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: kotoba-lang/kotobase
+          # Same pin as deps.edn — keep the two in lockstep.
+          ref: bbf57df9dde5c1869182012860129a598382e088
+          path: .deps/kotobase
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --global nbb
+      - name: pure .cljc suite (nostr.crypto/event/relay/blossom)
+        run: nbb --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljs
+      - name: WebSocket transport suite (.cljs-only, real sockets — see nostr.relay.transport's docstring)
+        run: nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljs
+
+  jvm-compat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: DeLaGuardo/setup-clojure@13.4
+        with:
+          cli: latest
+      - name: JVM compat suite (pure .cljc only — nostr.relay.transport is .cljs-only and never loaded here)
+        run: clojure -M:test
