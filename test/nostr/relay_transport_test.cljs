@@ -23,7 +23,7 @@
 (ns nostr.relay-transport-test
   (:require ["node:net" :as net]
             ["node:crypto" :as ncrypto]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [promesa.core :as p]
             [nostr.fixtures :as fx]
             [nostr.json :as json]

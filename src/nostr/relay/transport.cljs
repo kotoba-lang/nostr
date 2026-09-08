@@ -24,7 +24,7 @@
   well under any reasonable single-frame size limit for this repo's scope)."
   (:require ["node:net" :as net]
             ["node:crypto" :as ncrypto]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kotobase.local :as local]
             [nostr.event :as event]
             [nostr.json :as json]
@@ -106,7 +106,7 @@
   (into {}
         (keep (fn [line]
                 (when-let [idx (str/index-of line ":")]
-                  [(str/lower-case (str/trim (subs line 0 idx)))
+                  [(str/lower (str/trim (subs line 0 idx)))
                    (str/trim (subs line (inc idx)))])))
         (rest (str/split header-text #"\r\n"))))
 
