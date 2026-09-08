@@ -28,7 +28,7 @@
     - Bodies are strings (binary upload is a follow-up), same documented
       limitation nostr.http/kotobase-protocols' http.cljc carries.
     - GET is fully public, no auth, matching Blossom's read model."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotobase.store :as st]
             [nostr.crypto :as crypto]
             [nostr.event :as event]
@@ -84,8 +84,8 @@
       (not (:valid? (event/validate ev))) {:ok? false :reason :invalid-auth-event :pubkey nil}
       (not= nip98-kind (get ev "kind")) {:ok? false :reason :wrong-kind :pubkey nil}
       (not= url (first (event/tag-values ev "u"))) {:ok? false :reason :url-mismatch :pubkey nil}
-      (not= (str/upper-case (name (:method req)))
-            (str/upper-case (or (first (event/tag-values ev "method")) "")))
+      (not= (str/upper (name (:method req)))
+            (str/upper (or (first (event/tag-values ev "method")) "")))
       {:ok? false :reason :method-mismatch :pubkey nil}
       (> (abs (- now-s (get ev "created_at"))) window-s)
       {:ok? false :reason :expired :pubkey nil}

@@ -19,7 +19,7 @@
   a vetted external secp256k1 implementation instead — every caller in this
   repo (`nostr.event`, `nostr.blossom`) only ever calls `schnorr-verify`,
   never the field/point internals directly."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             #?@(:cljs [["node:crypto" :as ncrypto]]))
   #?(:clj (:import (java.security MessageDigest)
                     (java.math BigInteger))))

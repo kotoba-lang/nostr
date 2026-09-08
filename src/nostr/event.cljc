@@ -12,7 +12,7 @@
     {\"id\" \"<64-hex>\" \"pubkey\" \"<64-hex>\" \"created_at\" <int>
      \"kind\" <int> \"tags\" [[\"e\" \"...\"] ...] \"content\" \"...\"
      \"sig\" \"<128-hex>\"}"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [nostr.crypto :as crypto]
             [nostr.json :as json]))
 

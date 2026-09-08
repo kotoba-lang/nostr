@@ -16,9 +16,9 @@
                                                     ; http.cljc)
 
   A response is {:status int :headers {...} :body string-or-nil}."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
-(defn header [req k] (get (:headers req) (str/lower-case k)))
+(defn header [req k] (get (:headers req) (str/lower k)))
 
 (defn response
   ([status headers body] {:status status :headers headers :body body})

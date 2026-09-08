@@ -29,7 +29,7 @@
   (via IStore/-list + /-get) — correct, not optimized; documented as a v0.1
   scale limitation in the README, same spirit as s3.cljc's ListObjectsV2
   scanning every key in a bucket."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotobase.store :as st]
             [nostr.event :as event]))
 
