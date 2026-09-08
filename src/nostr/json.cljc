@@ -17,7 +17,7 @@
   is a narrower rule than general JSON. See `nostr.event/canonical-serialize`
   for that dedicated, spec-exact serializer. Parse returns maps with STRING
   keys (never keywordized — event/filter fields are data, not code)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ---------------------------------------------------------------- encode
 
