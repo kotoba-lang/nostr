@@ -7,7 +7,7 @@
 ;; unmodified. Mirrors kotoba-lang/dtn's bin/dtn_node.cljs CLI shape.
 ;;
 ;; Usage:
-;;   nbb --classpath "src:test:.deps/kotobase/src" bin/nostr_relay.cljk listen --port 7777
+;;   kbb --backend sci --classpath "src:test:.deps/kotobase/src" bin/nostr_relay.cljk listen --port 7777
 ;;   ;; -> starts a long-running relay; logs each accepted connection.
 ;;   ;;    Stays alive until killed.
 
