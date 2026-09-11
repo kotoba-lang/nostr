@@ -5,7 +5,7 @@
   (Node core module, zero npm deps) + native JS BigInt.
 
   THIS IS REAL, SPEC-COMPLIANT VERIFICATION — not a stand-in. `schnorr-verify`
-  is checked in test/nostr/crypto_test.cljc against the official BIP-340 test
+  is checked in test/nostr/crypto_test.cljk against the official BIP-340 test
   vectors (bitcoin/bips, bip-0340/test-vectors.csv), both positive and
   negative cases, not merely self-consistency. `schnorr-sign` exists ONLY to
   let this repo's own tests build genuinely-signed fixture events without a
@@ -263,7 +263,7 @@
 
 ;; --------------------------------------------------------------------- sign
 ;; TEST-FIXTURE-ONLY. Real Nostr clients sign; this relay/blob-store library
-;; never does. Exists solely so test/nostr/fixtures.cljc can build genuinely
+;; never does. Exists solely so test/nostr/fixtures.cljk can build genuinely
 ;; BIP-340-signed events/auth-headers for round-trip tests without faking a
 ;; signature. Implements the full deterministic-nonce algorithm (no RNG),
 ;; so it's reproducible in tests.

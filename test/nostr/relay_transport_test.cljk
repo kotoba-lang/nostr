@@ -18,7 +18,7 @@
 ;; push — not just the static REQ/EOSE query path.
 ;;
 ;; Run from this repo's root:
-;;   nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljs
+;;   nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljk
 
 (ns nostr.relay-transport-test
   (:require ["node:net" :as net]

@@ -47,7 +47,7 @@ ADR-2607161817 (`kotoba-lang/dtn`) and ADR-2607162135
   `:test` compat suite — a real regression in socket code can never
   regress the pure-data test suite, and vice versa.
 - Verified with a genuine two-scenario integration test
-  (`test/nostr/relay_transport_test.cljs`, itself `.cljs`-only) using REAL
+  (`test/nostr/relay_transport_test.cljk`, itself `.cljs`-only) using REAL
   sockets: a from-scratch test WebSocket client (also hand-rolled, over
   `node:net`) performs the actual RFC 6455 client handshake, sends a
   **masked** client text frame (client→server frames MUST be masked per
@@ -66,7 +66,7 @@ tagged hashing) from scratch in portable `.cljc` — `:clj` uses
 `java.math.BigInteger` (JDK built-in), `:cljs` (nbb/Node) uses native
 `js/BigInt` — **zero external elliptic-curve library dependency**.
 
-It is checked in `test/nostr/crypto_test.cljc` against the **official
+It is checked in `test/nostr/crypto_test.cljk` against the **official
 BIP-340 test vectors**
 ([bitcoin/bips](https://github.com/bitcoin/bips/blob/master/bip-0340/test-vectors.csv),
 fetched directly, not hand-derived), 5 positive and 10 negative cases (the 4
@@ -85,7 +85,7 @@ wrong, until cross-checked against the official vectors — see
 `nostr.crypto/schnorr-sign` also exists, but is **test-fixture-only** — real
 Nostr clients sign; `nostr.relay` and `nostr.blossom` only ever *verify*,
 never sign. It exists solely so this repo's own test suite
-(`test/nostr/fixtures.cljc`) can build genuinely BIP-340-signed events for
+(`test/nostr/fixtures.cljk`) can build genuinely BIP-340-signed events for
 round-trip tests instead of hand-typed (and possibly wrong-shaped) fixture
 data. If this workspace later wants a vetted external secp256k1
 implementation instead of this hand-rolled one, `schnorr-verify` is the
@@ -157,11 +157,11 @@ First-class runtime is **nbb/cljs** (repo-wide runtime priority: kotoba wasm
 git clone https://github.com/kotoba-lang/kotobase .deps/kotobase
 
 # Pure .cljc suite (event/crypto/relay/blossom logic — no sockets)
-nbb --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljs
+nbb --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljk
 
 # WebSocket transport suite (.cljs-only, real sockets — see
 # nostr.relay.transport's docstring for why this is a SEPARATE run)
-nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljs
+nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljk
 ```
 
 The `:test` alias in `deps.edn` is the JVM **compat** suite (pure `.cljc`
@@ -174,7 +174,7 @@ clojure -M:test
 ### Run a relay by hand
 
 ```bash
-nbb --classpath "src:test:.deps/kotobase/src" bin/nostr_relay.cljs listen --port 7777
+nbb --classpath "src:test:.deps/kotobase/src" bin/nostr_relay.cljk listen --port 7777
 ```
 
 Then connect with any real NIP-01 WebSocket client (a browser
