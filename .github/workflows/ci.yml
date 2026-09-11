@@ -20,9 +20,9 @@ jobs:
           node-version: 22
       - run: npm install --global nbb
       - name: pure .cljc suite (nostr.crypto/event/relay/blossom)
-        run: nbb --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljs
+        run: nbb --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljk
       - name: WebSocket transport suite (.cljs-only, real sockets — see nostr.relay.transport's docstring)
-        run: nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljs
+        run: nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljk
 
   jvm-compat:
     runs-on: ubuntu-latest

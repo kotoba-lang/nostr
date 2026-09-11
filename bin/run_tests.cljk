@@ -1,7 +1,7 @@
 ;; nbb test runner — first-class runtime per repo rule (kotoba wasm >
 ;; clojurewasm > cljs > nbb > (jvm/bb)). Run from the repo root:
 ;;
-;;   nbb --classpath "src:test:<kotobase>/src" bin/run_tests.cljs
+;;   nbb --classpath "src:test:<kotobase>/src" bin/run_tests.cljk
 ;;
 ;; where <kotobase> is a checkout of kotoba-lang/kotobase (provides
 ;; kotobase.store / kotobase.local). CI pins it to the same SHA as
@@ -9,13 +9,13 @@
 ;;
 ;; This runs ONLY the pure .cljc test suites (crypto/event/relay/blossom —
 ;; zero sockets, zero I/O beyond the injected IStore). The WebSocket
-;; transport test (test/nostr/relay_transport_test.cljs) is a SEPARATE run
+;; transport test (test/nostr/relay_transport_test.cljk) is a SEPARATE run
 ;; — it is .cljs-only per the kotoba-lang/dtn precedent (real socket I/O
 ;; must never be loadable by the JVM :test compat alias), so it cannot be
 ;; `require`'d into this cljs.test suite the way the .cljc tests are
 ;; without defeating that isolation; run it directly:
 ;;
-;;   nbb --classpath "src:test:<kotobase>/src" test/nostr/relay_transport_test.cljs
+;;   nbb --classpath "src:test:<kotobase>/src" test/nostr/relay_transport_test.cljk
 ;;
 ;; CI (.github/workflows/ci.yml) runs both steps.
 (ns run-tests
