@@ -157,24 +157,24 @@ First-class runtime is **nbb/cljs** (repo-wide runtime priority: kotoba wasm
 git clone https://github.com/kotoba-lang/kotobase .deps/kotobase
 
 # Pure .cljc suite (event/crypto/relay/blossom logic — no sockets)
-nbb --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljk
+kbb --backend sci --classpath "src:test:.deps/kotobase/src" bin/run_tests.cljk
 
 # WebSocket transport suite (.cljs-only, real sockets — see
 # nostr.relay.transport's docstring for why this is a SEPARATE run)
-nbb --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljk
+kbb --backend sci --classpath "src:test:.deps/kotobase/src" test/nostr/relay_transport_test.cljk
 ```
 
 The `:test` alias in `deps.edn` is the JVM **compat** suite (pure `.cljc`
 only — `nostr.relay.transport` is `.cljs`-only and is never loaded there):
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 ### Run a relay by hand
 
 ```bash
-nbb --classpath "src:test:.deps/kotobase/src" bin/nostr_relay.cljk listen --port 7777
+kbb --backend sci --classpath "src:test:.deps/kotobase/src" bin/nostr_relay.cljk listen --port 7777
 ```
 
 Then connect with any real NIP-01 WebSocket client (a browser
